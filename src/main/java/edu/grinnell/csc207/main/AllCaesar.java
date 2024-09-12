@@ -37,7 +37,7 @@ public class AllCaesar {
       System.err.println("Error: Invalid option: \"" + action + "\". Valid options are \"encode\" or \"decode\".");
       return false;
     }
-    if (AllCaesar.checkValid(str) == false){
+    if (CipherUtils.checkValid(str) == false){
       System.err.println("Error: String contains characters other than lowercase letters.");
       return false;
     }
@@ -49,19 +49,6 @@ public class AllCaesar {
       return true;
     }
     return false;
-  }
-
-  public static boolean checkValid(String str){
-    char[] strArr = str.toCharArray();
-    int strLen = str.length();
-    char lowerBound = 'a';
-    char upperBound = 'z';
-    for (int i = 0; i < strLen; i++) {
-      if (lowerBound > strArr[i] || strArr[i] > upperBound) {
-        return false;
-      }
-    }
-    return true;
   }
 
   public static void encode(PrintWriter pen, String str){

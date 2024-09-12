@@ -91,4 +91,17 @@ public class CipherUtils {
     }
     return new String(strArr);
   }
+
+  public static boolean checkValid(String str){
+    char[] strArr = str.toCharArray();
+    int strLen = str.length();
+    char lowerBound = 'a';
+    char upperBound = 'z';
+    for (int i = 0; i < strLen; i++) {
+      if (lowerBound > strArr[i] || strArr[i] > upperBound) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
