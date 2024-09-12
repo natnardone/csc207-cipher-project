@@ -61,10 +61,34 @@ public class CipherUtils {
   }
 
   public static String vigenereEncrypt(String str, String key) {
-    return str; // STUB
+    // make string array
+    char[] strArr = str.toCharArray();
+    int strLen = str.length();
+
+    // make key array
+    char[] keyArr = key.toCharArray();
+    int keyLen = key.length();
+
+    for (int k = 0; k < strLen; k++) {
+      char ch = strArr[k];
+      char add = keyArr[k % keyLen];
+      strArr[k] = CipherUtils.int2letter(addChars(ch, add));
+    }
+    return new String(strArr);
   }
 
   public static String vigenereDecrypt(String str, String key) {
-    return str;
+    char[] strArr = str.toCharArray();
+    int strLen = str.length();
+
+    char[] keyArr = key.toCharArray();
+    int keyLen = key.length();
+    
+    for (int k = 0; k < strLen; k++) {
+      char ch = strArr[k];
+      char add = keyArr[k % keyLen];
+      strArr[k] = CipherUtils.int2letter(subtractChars(ch, add));
+    }
+    return new String(strArr);
   }
 }
