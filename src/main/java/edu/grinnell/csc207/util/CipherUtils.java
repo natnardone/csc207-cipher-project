@@ -1,27 +1,32 @@
 package edu.grinnell.csc207.util;
 
 public class CipherUtils {
+
+  // works
   private static int letter2int(char letter) {
     int base = (int) 'a';
     return (int) (letter) - base;
   }
 
+  // works
   private static char int2letter(int i) {
     int base = (int) 'a';
     return (char) (i + base);
   }
 
+  // works
   public static String caesarEncrypt(String str, char letter) {
     char[] strArr = str.toCharArray();
     int strLen = str.length();
     
     for (int k = 0; k < strLen; k++) {
       char ch = strArr[k];
-      ch = CipherUtils.int2letter(addChars(ch, letter));
+      strArr[k] = CipherUtils.int2letter(addChars(ch, letter));
     }
     return new String(strArr);
   }
 
+  // works
   public static int addChars(char ch, char key) {
     int sum = CipherUtils.letter2int(ch) + CipherUtils.letter2int(key);
     if (sum > 25) {
@@ -32,17 +37,19 @@ public class CipherUtils {
     }
   }
 
+  // works
   public static String caesarDecrypt(String str, char letter) {
     char[] strArr = str.toCharArray();
     int strLen = str.length();
     
     for (int k = 0; k < strLen; k++) {
       char ch = strArr[k];
-      ch = CipherUtils.int2letter(subtractChars(ch, letter));
+      strArr[k] = CipherUtils.int2letter(subtractChars(ch, letter));
     }
     return new String(strArr);
   }
 
+  // works
   public static int subtractChars(char ch, char key) {
     int sum = CipherUtils.letter2int(ch) - CipherUtils.letter2int(key);
     if (sum < 0) {

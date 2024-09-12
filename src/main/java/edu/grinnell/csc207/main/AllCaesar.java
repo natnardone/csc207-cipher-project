@@ -6,38 +6,61 @@ import edu.grinnell.csc207.util.CipherUtils;
 public class AllCaesar {
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
+
+    String action;
+    String str;
     
     // Check number of arguments
-    if (len(args) != 2){
-      System.err.println("Error: Incorrect number of parameters.")
+    if (args.length != 2){
+      System.err.println("Error: Incorrect number of parameters.");
     }
     // Initialize variables for command-line arguments
     else{
-      String action = args[0];
-      String str = args[1];
+      action = args[0];
+      str = args[1];
+
+      if (AllCaesar.checkArgs(action, str) == true) {
+        if (action.equals("encode")){
+          AllCaesar.encode(pen, str);
+        }
+        else {
+          AllCaesar.decode(pen, str);
+        }
+      }
     }
 
-    // Check validity of variables
-    if !(AllCaesar.checkAction(action)){
-      System.err.println("Error: Invalid option: \"" + action + "\". Valid options are \"encode\" or \"decode\".");
-    }
-    else if !(AllCaesar.checkValid(str)){
-      System.err.println("Error: String contains characters other than lowercase letters.");
-    }
-    else if (action == "encode"){
-      AllCaesar.encode(pen, str);
-    }
-    else {
-      AllCaesar.decode(pen, str);
-    }
     pen.close();
   }
 
-  public static boolean checkAction(String action){
+  public static boolean checkArgs(String action, String str) {
+    if (AllCaesar.checkAction(action) == false){
+      System.err.println("Error: Invalid option: \"" + action + "\". Valid options are \"encode\" or \"decode\".");
+      return false;
+    }
+    if (AllCaesar.checkValid(str) == false){
+      System.err.println("Error: String contains characters other than lowercase letters.");
+      return false;
+    }
     return true;
   }
 
+  public static boolean checkAction(String action){
+    if (action.equals("encode") || action.equals("decode")) {
+      return true;
+    }
+    return false;
+  }
+
   public static boolean checkValid(String str){
+    char[] strArr = str.toCharArray();
+    int strLen = str.length();
+    char lowerBound = 'a';
+    char upperBound = 'z';
+    for (int i = 0; i < strLen; i++) {
+      if (lowerBound > strArr[i] || strArr[i] > upperBound) {
+        return false;
+      }
+    }
     return true;
   }
 
