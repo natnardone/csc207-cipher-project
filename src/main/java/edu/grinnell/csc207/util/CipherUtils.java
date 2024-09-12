@@ -2,19 +2,55 @@ package edu.grinnell.csc207.util;
 
 public class CipherUtils {
   private static int letter2int(char letter) {
-    return 0; // STUB
+    int base = (int) 'a';
+    return (int) (letter) - base;
   }
 
   private static char int2letter(int i) {
-    return 'a'; // STUB
+    int base = (int) 'a';
+    return (char) (i + base);
   }
 
   public static String caesarEncrypt(String str, char letter) {
-    return str; // STUB
+    char[] strArr = str.toCharArray();
+    int strLen = str.length();
+    
+    for (int k = 0; k < strLen; k++) {
+      char ch = strArr[k];
+      ch = CipherUtils.int2letter(addChars(ch, letter));
+    }
+    return new String(strArr);
+  }
+
+  public static int addChars(char ch, char key) {
+    int sum = CipherUtils.letter2int(ch) + CipherUtils.letter2int(key);
+    if (sum > 25) {
+      return sum - 26;
+    }
+    else {
+      return sum;
+    }
   }
 
   public static String caesarDecrypt(String str, char letter) {
-    return str; // STUB
+    char[] strArr = str.toCharArray();
+    int strLen = str.length();
+    
+    for (int k = 0; k < strLen; k++) {
+      char ch = strArr[k];
+      ch = CipherUtils.int2letter(subtractChars(ch, letter));
+    }
+    return new String(strArr);
+  }
+
+  public static int subtractChars(char ch, char key) {
+    int sum = CipherUtils.letter2int(ch) - CipherUtils.letter2int(key);
+    if (sum < 0) {
+      return sum + 26;
+    }
+    else {
+      return sum;
+    }
   }
 
   public static String vigenereEncrypt(String str, String key) {
