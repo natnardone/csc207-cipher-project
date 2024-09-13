@@ -1,9 +1,29 @@
+/**
+ * AllCaesar.java
+ *
+ * Author: Natalie Nardone
+ * Date: September 12, 2024
+ * Course: CSC-207-01
+ *
+ */
 package edu.grinnell.csc207.main;
 
 import java.io.PrintWriter;
 import edu.grinnell.csc207.util.CipherUtils;
 
+  /**
+   * A class to print out all possible Caesar cipher encryptions/decryptions of a word.
+   *
+   */
 public class AllCaesar {
+
+  /**
+   * Takes two command-line arguments and prints all of the possibilities for encoding
+   * or decoding the given string.
+   *
+   * @param args
+   *    The command line arguments.
+   */
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
 
@@ -28,6 +48,17 @@ public class AllCaesar {
     pen.close();
   } // main(String[])
 
+  /**
+   * Checks if the given arguments are valid options.
+   *
+   * @param action
+   *    The given action to perform on str.
+   * @param str
+   *    The given string to perform an action on.
+   *
+   * @return boolean
+   *    Returns true if the arguments are valid and false otherwise.
+   */
   public static boolean checkArgs(String action, String str) {
     if (!AllCaesar.checkAction(action)) {
       System.err.println("Error: Invalid option: \"" + action
@@ -41,6 +72,15 @@ public class AllCaesar {
     return true;
   } // checkArgs(String, String)
 
+  /**
+   * Checks if the given action is a valid option.
+   *
+   * @param action
+   *    The given action to perform on the string.
+   *
+   * @return boolean
+   *    Returns true if the action is a valid option and false otherwise.
+   */
   public static boolean checkAction(String action) {
     if (action.equals("encode") || action.equals("decode")) {
       return true;
@@ -48,12 +88,28 @@ public class AllCaesar {
     return false;
   } // checkAction(String)
 
+  /**
+   * Encodes and prints a given string with every possible key.
+   *
+   * @param pen
+   *    A pen to print all of encoded strings.
+   * @param str
+   *    The string to encode.
+   */
   public static void encode(PrintWriter pen, String str) {
     for (char ch = 'a'; ch <= 'z'; ch++) {
       pen.printf("n = %c: %s\n", ch, CipherUtils.caesarEncrypt(str, ch));
     } // for
   } // encode(PrintWriter, String)
 
+  /**
+   * Decodes and prints a given string with every possible key.
+   *
+   * @param pen
+   *    A pen to print all of decoded strings.
+   * @param str
+   *    The string to decode.
+   */
   public static void decode(PrintWriter pen, String str) {
     for (char ch = 'a'; ch <= 'z'; ch++) {
       pen.printf("n = %c: %s\n", ch, CipherUtils.caesarDecrypt(str, ch));
