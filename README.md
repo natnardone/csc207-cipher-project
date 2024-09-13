@@ -9,6 +9,7 @@ A program for encrypting and decrypting Strings.
 Sources:
 
 Java Documentation for help with String, Character, and Integer methods: https://docs.oracle.com/en/java/javase/17/docs/api/index.html
+
 Course Mentor Maria for help with understanding GitHub, Maven, and the style checks.
 
 GitHub Repository:
